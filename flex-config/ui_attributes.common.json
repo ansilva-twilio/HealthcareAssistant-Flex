@@ -383,6 +383,9 @@
       },
       "inline_media": {
         "enabled": true
+      },
+      "healthcare_crm_container": {
+        "enabled": true
       }
     }
   }
