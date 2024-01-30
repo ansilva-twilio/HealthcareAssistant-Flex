@@ -1,17 +1,15 @@
-const { prepareFlexFunction, extractStandardResponse } = require(Runtime.getFunctions()[
-    'common/helpers/function-helper'
-  ].path);
- 
-  const requiredParameters = [
-    { key: 'documentSid', purpose: 'unique ID of the document' },
-  ];
-  
-  exports.handler = prepareFlexFunction(requiredParameters, async (context, event, callback, response, handleError) => {
+  exports.handler = async (context, event, callback) => {
     try {
       const { documentSid } = event;
-  
+      const response = new Twilio.Response();
+    
+      response.appendHeader('Access-Control-Allow-Origin', '*');
+      response.appendHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+      response.appendHeader('Content-Type', 'application/json');
+      response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
+
       const client = context.getTwilioClient();
-        const document = await client.sync.v1.services('IS788f01a3e4f8590562ed0a807f1f6abc')
+      const document = await client.sync.v1.services('IS788f01a3e4f8590562ed0a807f1f6abc')
         .documents(documentSid)
         .fetch();
 
@@ -19,7 +17,8 @@ const { prepareFlexFunction, extractStandardResponse } = require(Runtime.getFunc
       response.setBody(document.data);
       return callback(null, response);
     } catch (error) {
-      return handleError(error);
+      console.error(error);
+      return callback(error);
     }
-  });
+  };
   

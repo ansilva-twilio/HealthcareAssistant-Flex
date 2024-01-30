@@ -5,6 +5,7 @@
     }
   },
   "custom_data": {
+    "serverless_functions_domain": "custom-flex-extensions-serverless-1539-dev.twil.io",
     "common": {
       "log_level": "info",
       "teams": [

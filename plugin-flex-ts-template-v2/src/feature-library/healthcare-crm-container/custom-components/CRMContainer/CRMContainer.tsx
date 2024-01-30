@@ -16,13 +16,14 @@ export const CRMContainer = () => {
   const selectedTask = tasksFiltered[0];
 
   useEffect(() => {
+    console.log('Fetching Doctor Notes for ' + selectedTask?.attributes?.syncObjSid);
       HealthcareCRMService
         .fetchDoctorNotes(selectedTask?.attributes?.syncObjSid)
         .then((notes: any) => {
           setDoctorNotes(notes?.summary);
           setPatientName(`${notes?.firstName} ${notes?.lastName}`);
         });
-  }, []);
+  }, [tasks]);
 
   // Render for only the filtered tasks as well as an instance for when there is no task selected
   if (selectedTask) {
@@ -42,7 +43,7 @@ export const CRMContainer = () => {
               <Paragraph marginBottom="space0">— <Anchor href="#">Dr. Hanz Schukrutz</Anchor></Paragraph>
             </Card> 
           }
-          { !patientName && 
+          { !patientName &&   
             <Card>  
               <Text as="div" textAlign="center">
                 <Paragraph>
