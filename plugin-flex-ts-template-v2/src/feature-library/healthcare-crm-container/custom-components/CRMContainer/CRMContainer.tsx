@@ -16,6 +16,7 @@ export const CRMContainer = () => {
   const selectedTask = tasksFiltered[0];
 
   useEffect(() => {
+    if (selectedTask?.attributes?.syncObjSid) {
     console.log('Fetching Doctor Notes for ' + selectedTask?.attributes?.syncObjSid);
       HealthcareCRMService
         .fetchDoctorNotes(selectedTask?.attributes?.syncObjSid)
@@ -23,6 +24,7 @@ export const CRMContainer = () => {
           setDoctorNotes(notes?.summary);
           setPatientName(`${notes?.firstName} ${notes?.lastName}`);
         });
+      }
   }, [tasks]);
 
   // Render for only the filtered tasks as well as an instance for when there is no task selected

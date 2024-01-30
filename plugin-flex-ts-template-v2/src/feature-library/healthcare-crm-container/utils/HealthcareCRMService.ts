@@ -11,9 +11,6 @@ class HealthcareCRMService extends ApiService {
         Token: encodeURIComponent(this.manager.store.getState().flex.session.ssoTokenPayload.token),
       };
 
-      console.log(encodedParams);
-      console.log(`${this.serverlessProtocol}://${this.serverlessDomain}/features/healthcare-crm-container/flex/fetch-doctor-notes`);
-      
       this.fetchJsonWithReject<string>(
         `${this.serverlessProtocol}://${this.serverlessDomain}/features/healthcare-crm-container/flex/fetch-doctor-notes`,
         {

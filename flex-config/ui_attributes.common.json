@@ -220,7 +220,7 @@
         }
       },
       "dispositions": {
-        "enabled": true,
+        "enabled": false,
         "enable_notes": true,
         "require_disposition": false,
         "global_dispositions": [
