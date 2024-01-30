@@ -22,7 +22,7 @@ export const CRMContainer = () => {
         .fetchDoctorNotes(selectedTask?.attributes?.syncObjSid)
         .then((notes: any) => {
           setDoctorNotes(notes?.summary);
-          setPatientName(`${notes?.firstName} ${notes?.lastName}`);
+          setPatientName(`${notes?.firstName ?? notes?.first_name} ${notes?.lastName ?? notes?.last_name}`);
         });
       }
   }, [tasks]);
